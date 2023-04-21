@@ -1,0 +1,11 @@
+{
+  "collectionsAppv1App": {
+    "ProccesingStatus": {
+      "null": "",
+      "INITIAL": "INITIAL",
+      "LOGGED": "LOGGED",
+      "POSTEDTOFCR": "POSTEDTOFCR",
+      "COMPLETED": "COMPLETED"
+    }
+  }
+}

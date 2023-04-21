@@ -1,0 +1,436 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-notify-transaction-heading"
+        data-cy="NotifyTransactionCreateUpdateHeading"
+        jhiTranslate="collectionsAppv1App.notifyTransaction.home.createOrEditLabel"
+      >
+        Create or edit a Notify Transaction
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="collectionsAppv1App.notifyTransaction.recordUniqueIdentifier"
+            for="field_recordUniqueIdentifier"
+            >Record Unique Identifier</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="recordUniqueIdentifier"
+            id="field_recordUniqueIdentifier"
+            data-cy="recordUniqueIdentifier"
+            formControlName="recordUniqueIdentifier"
+          />
+          <div
+            *ngIf="
+              editForm.get('recordUniqueIdentifier')!.invalid &&
+              (editForm.get('recordUniqueIdentifier')!.dirty || editForm.get('recordUniqueIdentifier')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('recordUniqueIdentifier')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.paymentId" for="field_paymentId">Payment Id</label>
+          <input type="number" class="form-control" name="paymentId" id="field_paymentId" data-cy="paymentId" formControlName="paymentId" />
+          <div *ngIf="editForm.get('paymentId')!.invalid && (editForm.get('paymentId')!.dirty || editForm.get('paymentId')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('paymentId')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('paymentId')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.customerPaymentCode" for="field_customerPaymentCode"
+            >Customer Payment Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="customerPaymentCode"
+            id="field_customerPaymentCode"
+            data-cy="customerPaymentCode"
+            formControlName="customerPaymentCode"
+          />
+          <div
+            *ngIf="
+              editForm.get('customerPaymentCode')!.invalid &&
+              (editForm.get('customerPaymentCode')!.dirty || editForm.get('customerPaymentCode')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('customerPaymentCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.serviceCode" for="field_serviceCode"
+            >Service Code</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="serviceCode"
+            id="field_serviceCode"
+            data-cy="serviceCode"
+            formControlName="serviceCode"
+          />
+          <div *ngIf="editForm.get('serviceCode')!.invalid && (editForm.get('serviceCode')!.dirty || editForm.get('serviceCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('serviceCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('serviceCode')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.transactionAmount" for="field_transactionAmount"
+            >Transaction Amount</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="transactionAmount"
+            id="field_transactionAmount"
+            data-cy="transactionAmount"
+            formControlName="transactionAmount"
+          />
+          <div
+            *ngIf="
+              editForm.get('transactionAmount')!.invalid &&
+              (editForm.get('transactionAmount')!.dirty || editForm.get('transactionAmount')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('transactionAmount')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('transactionAmount')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.charges" for="field_charges">Charges</label>
+          <input type="number" class="form-control" name="charges" id="field_charges" data-cy="charges" formControlName="charges" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.partnerCode" for="field_partnerCode"
+            >Partner Code</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="partnerCode"
+            id="field_partnerCode"
+            data-cy="partnerCode"
+            formControlName="partnerCode"
+          />
+          <div *ngIf="editForm.get('partnerCode')!.invalid && (editForm.get('partnerCode')!.dirty || editForm.get('partnerCode')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('partnerCode')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.timestamp" for="field_timestamp">Timestamp</label>
+          <div class="input-group">
+            <input
+              id="field_timestamp"
+              data-cy="timestamp"
+              type="text"
+              class="form-control"
+              name="timestamp"
+              ngbDatepicker
+              #timestampDp="ngbDatepicker"
+              formControlName="timestamp"
+            />
+            <button type="button" class="btn btn-secondary" (click)="timestampDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+          <div *ngIf="editForm.get('timestamp')!.invalid && (editForm.get('timestamp')!.dirty || editForm.get('timestamp')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('timestamp')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.narration" for="field_narration">Narration</label>
+          <input type="text" class="form-control" name="narration" id="field_narration" data-cy="narration" formControlName="narration" />
+          <div *ngIf="editForm.get('narration')!.invalid && (editForm.get('narration')!.dirty || editForm.get('narration')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('narration')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.currency" for="field_currency">Currency</label>
+          <input type="number" class="form-control" name="currency" id="field_currency" data-cy="currency" formControlName="currency" />
+          <div *ngIf="editForm.get('currency')!.invalid && (editForm.get('currency')!.dirty || editForm.get('currency')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('currency')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('currency')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.debitAccount" for="field_debitAccount"
+            >Debit Account</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="debitAccount"
+            id="field_debitAccount"
+            data-cy="debitAccount"
+            formControlName="debitAccount"
+          />
+          <div
+            *ngIf="editForm.get('debitAccount')!.invalid && (editForm.get('debitAccount')!.dirty || editForm.get('debitAccount')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('debitAccount')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('debitAccount')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.creditAccount" for="field_creditAccount"
+            >Credit Account</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="creditAccount"
+            id="field_creditAccount"
+            data-cy="creditAccount"
+            formControlName="creditAccount"
+          />
+          <div
+            *ngIf="
+              editForm.get('creditAccount')!.invalid && (editForm.get('creditAccount')!.dirty || editForm.get('creditAccount')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('creditAccount')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('creditAccount')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.proccessingStatus" for="field_proccessingStatus"
+            >Proccessing Status</label
+          >
+          <select
+            class="form-control"
+            name="proccessingStatus"
+            formControlName="proccessingStatus"
+            id="field_proccessingStatus"
+            data-cy="proccessingStatus"
+          >
+            <option [ngValue]="null">{{ 'collectionsAppv1App.ProccesingStatus.null' | translate }}</option>
+            <option *ngFor="let proccesingStatus of proccesingStatusValues" [value]="proccesingStatus">
+              {{ 'collectionsAppv1App.ProccesingStatus.' + proccesingStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="collectionsAppv1App.notifyTransaction.fcrTransactionStatus"
+            for="field_fcrTransactionStatus"
+            >Fcr Transaction Status</label
+          >
+          <select
+            class="form-control"
+            name="fcrTransactionStatus"
+            formControlName="fcrTransactionStatus"
+            id="field_fcrTransactionStatus"
+            data-cy="fcrTransactionStatus"
+          >
+            <option [ngValue]="null">{{ 'collectionsAppv1App.TransactionStatus.null' | translate }}</option>
+            <option *ngFor="let transactionStatus of transactionStatusValues" [value]="transactionStatus">
+              {{ 'collectionsAppv1App.TransactionStatus.' + transactionStatus | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.fcrTransactionId" for="field_fcrTransactionId"
+            >Fcr Transaction Id</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="fcrTransactionId"
+            id="field_fcrTransactionId"
+            data-cy="fcrTransactionId"
+            formControlName="fcrTransactionId"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label
+            class="form-label"
+            jhiTranslate="collectionsAppv1App.notifyTransaction.fcrTransactionReference"
+            for="field_fcrTransactionReference"
+            >Fcr Transaction Reference</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="fcrTransactionReference"
+            id="field_fcrTransactionReference"
+            data-cy="fcrTransactionReference"
+            formControlName="fcrTransactionReference"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.freeField1" for="field_freeField1"
+            >Free Field 1</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField1"
+            id="field_freeField1"
+            data-cy="freeField1"
+            formControlName="freeField1"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="collectionsAppv1App.notifyTransaction.freeField2" for="field_freeField2"
+            >Free Field 2</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="freeField2"
+            id="field_freeField2"
+            data-cy="freeField2"
+            formControlName="freeField2"
+          />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

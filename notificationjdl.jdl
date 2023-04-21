@@ -1,0 +1,170 @@
+/*
+ * This is a micro monolith schoolfees payment service  with react UI,API
+ ** and authentication
+ * This uses JHipster to kick start the project
+ */
+application {
+    config {
+        baseName collectionsAppv1,
+        applicationType monolith,
+        packageName ug.co.absa.collections,
+        authenticationType jwt
+        databaseType sql,
+        devDatabaseType mysql,
+        prodDatabaseType mysql,
+        clientFramework angular,
+        buildTool gradle,
+        serverPort 9002,
+        enableSwaggerCodegen false,
+        testFrameworks [cucumber, gatling]
+
+
+    }
+
+
+    entities NotifyTransaction
+    paginate NotifyTransaction with pagination
+    service NotifyTransaction  with serviceClass
+    dto * with mapstruct
+
+
+}
+
+/**This enum shows all available payment channels
+ * @author Banada Ismael ABSA DT team
+ */
+enum TransactionStatus {
+    SUCCESS,
+    FAILED,
+    PENDING,
+    UNKNOWN
+}
+
+enum ProccesingStatus{
+    INITIAL,
+    LOGGED,
+    POSTEDTOFCR,
+    COMPLETED
+}
+
+enum RecordStatus {
+    ACTIVE, INACTIVE
+}
+
+/**
+ * This is a student class,
+ * @author Banada Ismael ABSA DT team
+ */
+entity Partner {
+    partnerId UUID required unique, //this is a field to add an extra unique identifier.
+    partnerCode Integer required, //this is a unique identifier for students
+    partnerShortcode Integer required ,
+    categoryCode String required,
+    phonenumber String required ,
+    address String required ,
+    partnerName String required minlength(3) maxlength(50),
+    registrationdate LocalDate required,
+    isAbsaPartner String required minlength(3) maxlength(8),
+    status RecordStatus required, //this field is used to check whether a record is active or inactive
+    freeField1 String,
+    freeField2 String,
+    freeField3 String,
+    provideDebitAccount Boolean,
+    provideCreditAccount Boolean,
+    isDeleted RecordStatus required
+
+}
+
+
+entity Category {
+    categoryId UUID required unique, //this is a field to add an extra unique identifier.
+    categoryCode String required, //this is a unique identifier for students
+    categoryName String required minlength(3) maxlength(50),
+    status RecordStatus required, //this field is used to check whether a record is active or inactive
+    description String,
+    freeField1 String,
+    freeField2 String,
+    isDeleted Boolean required
+
+}
+
+
+entity NotifyService {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    serviceId Integer required unique,
+    serviceCode String,
+    serviceName String,
+    freeField1 String,
+    freeField2 String,
+    isDeleted Boolean
+
+}
+
+entity Payment {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    paymentId Integer required,
+    customerPaymentCode String required,
+    serviceCode Integer required,
+    transactionAmount Integer required,
+    charges Integer,
+    partnerCode String required,
+    timestamp LocalDate required,
+    narration String required,
+    currency Integer required,
+    debitAccount Integer required,
+    creditAccount Integer required
+
+}
+
+entity IncomingResponseFromFCR {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    transactionId Integer required,
+    timestamp LocalDate required,
+    responseJson String
+}
+
+entity IncomingRequests {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    transactionId Integer required,
+    timestamp LocalDate required,
+    requestJson  TextBlob
+}
+
+entity IncomingResponse {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    transactionId Integer required,
+    timestamp LocalDate required,
+    requestJson  TextBlob
+}
+
+entity IncomingRequestsToFCR {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    transactionId Integer required,
+    timestamp LocalDate required,
+    requestJson TextBlob
+}
+
+entity NotifyTransaction {
+    recordUniqueIdentifier UUID required unique, //thid is a field to add an extra unique identifier.
+    paymentId Integer required,
+    customerPaymentCode String required,
+    serviceCode Integer required,
+    transactionAmount Integer required,
+    charges Integer,
+    partnerCode String required,
+    timestamp LocalDate required,
+    narration String required,
+    currency Integer required,
+    debitAccount Integer required,
+    creditAccount Integer required,
+    proccessingStatus ProccesingStatus,
+    fcrTransactionStatus TransactionStatus,
+    fcrTransactionId String,
+    fcrTransactionReference String,
+    freeField1 String,
+    freeField2 String
+}
+
+
+
+

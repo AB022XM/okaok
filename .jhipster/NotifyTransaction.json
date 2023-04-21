@@ -1,0 +1,102 @@
+{
+  "applications": ["collectionsAppv1"],
+  "changelogDate": "20230421081715",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "notify_transaction",
+  "fields": [
+    {
+      "fieldName": "recordUniqueIdentifier",
+      "fieldType": "UUID",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "paymentId",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "customerPaymentCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "serviceCode",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "transactionAmount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "charges",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "partnerCode",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "timestamp",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "narration",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "currency",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "debitAccount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "creditAccount",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "proccessingStatus",
+      "fieldType": "ProccesingStatus",
+      "fieldValues": "INITIAL,LOGGED,POSTEDTOFCR,COMPLETED"
+    },
+    {
+      "fieldName": "fcrTransactionStatus",
+      "fieldType": "TransactionStatus",
+      "fieldTypeJavadoc": "This enum shows all available payment channels\\n@author Banada Ismael ABSA DT team",
+      "fieldValues": "SUCCESS,FAILED,PENDING,UNKNOWN"
+    },
+    {
+      "fieldName": "fcrTransactionId",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fcrTransactionReference",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "freeField2",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "NotifyTransaction",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

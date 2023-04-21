@@ -1,0 +1,41 @@
+{
+  "collectionsAppv1App": {
+    "notifyTransaction": {
+      "home": {
+        "title": "Notify Transactions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Notify Transaction",
+        "createOrEditLabel": "Create or edit a Notify Transaction",
+        "notFound": "No Notify Transactions found"
+      },
+      "created": "A new Notify Transaction is created with identifier {{ param }}",
+      "updated": "A Notify Transaction is updated with identifier {{ param }}",
+      "deleted": "A Notify Transaction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Notify Transaction {{ id }}?"
+      },
+      "detail": {
+        "title": "Notify Transaction"
+      },
+      "id": "ID",
+      "recordUniqueIdentifier": "Record Unique Identifier",
+      "paymentId": "Payment Id",
+      "customerPaymentCode": "Customer Payment Code",
+      "serviceCode": "Service Code",
+      "transactionAmount": "Transaction Amount",
+      "charges": "Charges",
+      "partnerCode": "Partner Code",
+      "timestamp": "Timestamp",
+      "narration": "Narration",
+      "currency": "Currency",
+      "debitAccount": "Debit Account",
+      "creditAccount": "Credit Account",
+      "proccessingStatus": "Proccessing Status",
+      "fcrTransactionStatus": "Fcr Transaction Status",
+      "fcrTransactionId": "Fcr Transaction Id",
+      "fcrTransactionReference": "Fcr Transaction Reference",
+      "freeField1": "Free Field 1",
+      "freeField2": "Free Field 2"
+    }
+  }
+}
