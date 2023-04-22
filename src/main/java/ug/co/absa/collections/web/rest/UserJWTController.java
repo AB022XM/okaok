@@ -19,6 +19,7 @@ import ug.co.absa.collections.web.rest.vm.LoginVM;
  */
 @RestController
 @RequestMapping("/api")
+//
 public class UserJWTController {
 
     private final TokenProvider tokenProvider;

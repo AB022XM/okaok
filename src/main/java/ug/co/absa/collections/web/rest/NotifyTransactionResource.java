@@ -32,9 +32,12 @@ import ug.co.absa.collections.web.rest.errors.BadRequestAlertException;
 @RequestMapping("/api")
 public class NotifyTransactionResource {
 
+
     private final Logger log = LoggerFactory.getLogger(NotifyTransactionResource.class);
 
     private static final String ENTITY_NAME = "notifyTransaction";
+
+
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -58,7 +61,7 @@ public class NotifyTransactionResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new notifyTransactionDTO, or with status {@code 400 (Bad Request)} if the notifyTransaction has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/notify-transactions")
+    @PostMapping("/notify")
     public ResponseEntity<NotifyTransactionDTO> createNotifyTransaction(@Valid @RequestBody NotifyTransactionDTO notifyTransactionDTO)
         throws URISyntaxException {
         log.debug("REST request to save NotifyTransaction : {}", notifyTransactionDTO);
@@ -66,8 +69,18 @@ public class NotifyTransactionResource {
             throw new BadRequestAlertException("A new notifyTransaction cannot already have an ID", ENTITY_NAME, "idexists");
         }
         NotifyTransactionDTO result = notifyTransactionService.save(notifyTransactionDTO);
+
+    //       HttpHeaders headers = new HttpHeaders();
+    //       headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+    //       HttpEntity<Product> entity = new HttpEntity<Product>(product,headers);
+
+    //   return restTemplate.exchange(
+    //      "http://localhost:8080/products", HttpMethod.POST, entity, String.class).getBody();
+
+
+
         return ResponseEntity
-            .created(new URI("/api/notify-transactions/" + result.getId()))
+            .created(new URI("/api/notify/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
             .body(result);
     }
@@ -82,29 +95,29 @@ public class NotifyTransactionResource {
      * or with status {@code 500 (Internal Server Error)} if the notifyTransactionDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PutMapping("/notify-transactions/{id}")
-    public ResponseEntity<NotifyTransactionDTO> updateNotifyTransaction(
-        @PathVariable(value = "id", required = false) final Long id,
-        @Valid @RequestBody NotifyTransactionDTO notifyTransactionDTO
-    ) throws URISyntaxException {
-        log.debug("REST request to update NotifyTransaction : {}, {}", id, notifyTransactionDTO);
-        if (notifyTransactionDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        if (!Objects.equals(id, notifyTransactionDTO.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
+    // @PutMapping("/notify-transactions/{id}")
+    // public ResponseEntity<NotifyTransactionDTO> updateNotifyTransaction(
+    //     @PathVariable(value = "id", required = false) final Long id,
+    //     @Valid @RequestBody NotifyTransactionDTO notifyTransactionDTO
+    // ) throws URISyntaxException {
+    //     log.debug("REST request to update NotifyTransaction : {}, {}", id, notifyTransactionDTO);
+    //     if (notifyTransactionDTO.getId() == null) {
+    //         throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+    //     }
+    //     if (!Objects.equals(id, notifyTransactionDTO.getId())) {
+    //         throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
+    //     }
 
-        if (!notifyTransactionRepository.existsById(id)) {
-            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
-        }
+    //     if (!notifyTransactionRepository.existsById(id)) {
+    //         throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+    //     }
 
-        NotifyTransactionDTO result = notifyTransactionService.update(notifyTransactionDTO);
-        return ResponseEntity
-            .ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, notifyTransactionDTO.getId().toString()))
-            .body(result);
-    }
+    //     NotifyTransactionDTO result = notifyTransactionService.update(notifyTransactionDTO);
+    //     return ResponseEntity
+    //         .ok()
+    //         .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, notifyTransactionDTO.getId().toString()))
+    //         .body(result);
+    // }
 
     /**
      * {@code PATCH  /notify-transactions/:id} : Partial updates given fields of an existing notifyTransaction, field will ignore if it is null
@@ -117,30 +130,30 @@ public class NotifyTransactionResource {
      * or with status {@code 500 (Internal Server Error)} if the notifyTransactionDTO couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PatchMapping(value = "/notify-transactions/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<NotifyTransactionDTO> partialUpdateNotifyTransaction(
-        @PathVariable(value = "id", required = false) final Long id,
-        @NotNull @RequestBody NotifyTransactionDTO notifyTransactionDTO
-    ) throws URISyntaxException {
-        log.debug("REST request to partial update NotifyTransaction partially : {}, {}", id, notifyTransactionDTO);
-        if (notifyTransactionDTO.getId() == null) {
-            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
-        }
-        if (!Objects.equals(id, notifyTransactionDTO.getId())) {
-            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
-        }
+    // @PatchMapping(value = "/notify-transactions/{id}", consumes = { "application/json", "application/merge-patch+json" })
+    // public ResponseEntity<NotifyTransactionDTO> partialUpdateNotifyTransaction(
+    //     @PathVariable(value = "id", required = false) final Long id,
+    //     @NotNull @RequestBody NotifyTransactionDTO notifyTransactionDTO
+    // ) throws URISyntaxException {
+    //     log.debug("REST request to partial update NotifyTransaction partially : {}, {}", id, notifyTransactionDTO);
+    //     if (notifyTransactionDTO.getId() == null) {
+    //         throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+    //     }
+    //     if (!Objects.equals(id, notifyTransactionDTO.getId())) {
+    //         throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
+    //     }
 
-        if (!notifyTransactionRepository.existsById(id)) {
-            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
-        }
+    //     if (!notifyTransactionRepository.existsById(id)) {
+    //         throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+    //     }
 
-        Optional<NotifyTransactionDTO> result = notifyTransactionService.partialUpdate(notifyTransactionDTO);
+    //     Optional<NotifyTransactionDTO> result = notifyTransactionService.partialUpdate(notifyTransactionDTO);
 
-        return ResponseUtil.wrapOrNotFound(
-            result,
-            HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, notifyTransactionDTO.getId().toString())
-        );
-    }
+    //     return ResponseUtil.wrapOrNotFound(
+    //         result,
+    //         HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, notifyTransactionDTO.getId().toString())
+    //     );
+    // }
 
     /**
      * {@code GET  /notify-transactions} : get all the notifyTransactions.
@@ -164,10 +177,10 @@ public class NotifyTransactionResource {
      * @param id the id of the notifyTransactionDTO to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the notifyTransactionDTO, or with status {@code 404 (Not Found)}.
      */
-    @GetMapping("/notify-transactions/{id}")
-    public ResponseEntity<NotifyTransactionDTO> getNotifyTransaction(@PathVariable Long id) {
-        log.debug("REST request to get NotifyTransaction : {}", id);
-        Optional<NotifyTransactionDTO> notifyTransactionDTO = notifyTransactionService.findOne(id);
+    @GetMapping("/detail{transactionId}")
+    public ResponseEntity<NotifyTransactionDTO> getNotifyTransaction(@PathVariable Long transactionId) {
+        log.debug("REST request to get NotifyTransaction : {}", transactionId);
+        Optional<NotifyTransactionDTO> notifyTransactionDTO = notifyTransactionService.findOne(transactionId);
         return ResponseUtil.wrapOrNotFound(notifyTransactionDTO);
     }
 
@@ -177,13 +190,13 @@ public class NotifyTransactionResource {
      * @param id the id of the notifyTransactionDTO to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
-    @DeleteMapping("/notify-transactions/{id}")
-    public ResponseEntity<Void> deleteNotifyTransaction(@PathVariable Long id) {
-        log.debug("REST request to delete NotifyTransaction : {}", id);
-        notifyTransactionService.delete(id);
-        return ResponseEntity
-            .noContent()
-            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
-            .build();
-    }
+    // @DeleteMapping("/details/{id}")
+    // public ResponseEntity<Void> deleteNotifyTransaction(@PathVariable Long id) {
+    //     log.debug("REST request to delete NotifyTransaction : {}", id);
+    //     notifyTransactionService.delete(id);
+    //     return ResponseEntity
+    //         .noContent()
+    //         .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+    //         .build();
+    // }
 }

@@ -18,6 +18,7 @@ import tech.jhipster.config.DefaultProfileUtil;
 import tech.jhipster.config.JHipsterConstants;
 import ug.co.absa.collections.config.ApplicationProperties;
 import ug.co.absa.collections.config.CRLFLogConverter;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ LiquibaseProperties.class, ApplicationProperties.class })
@@ -102,4 +103,11 @@ public class CollectionsAppv1App {
             env.getActiveProfiles().length == 0 ? env.getDefaultProfiles() : env.getActiveProfiles()
         );
     }
+
+    // @Bean
+
+//     @Bean
+//    public RestTemplate getRestTemplate() {
+//       return new RestTemplate();
+//    }
 }

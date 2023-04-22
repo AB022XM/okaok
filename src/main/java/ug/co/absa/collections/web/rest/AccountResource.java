@@ -1,6 +1,7 @@
 package ug.co.absa.collections.web.rest;
 
 import java.util.*;
+import io.swagger.v3.oas.annotations.Hidden;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +25,7 @@ import ug.co.absa.collections.web.rest.vm.ManagedUserVM;
  */
 @RestController
 @RequestMapping("/api")
+@Hidden
 public class AccountResource {
 
     private static class AccountResourceException extends RuntimeException {

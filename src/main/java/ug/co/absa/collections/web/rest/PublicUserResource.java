@@ -15,9 +15,12 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import tech.jhipster.web.util.PaginationUtil;
 import ug.co.absa.collections.service.UserService;
 import ug.co.absa.collections.service.dto.UserDTO;
+import io.swagger.v3.oas.annotations.Hidden;
+
 
 @RestController
 @RequestMapping("/api")
+@Hidden
 public class PublicUserResource {
 
     private static final List<String> ALLOWED_ORDERED_PROPERTIES = Collections.unmodifiableList(
