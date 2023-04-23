@@ -194,7 +194,7 @@ nohttp {
 
 configurations {
     providedRuntime
-    implementation.exclude module: "spring-boot-starter-tomcat"
+    //implementation.exclude module: "spring-boot-starter-tomcat"
     all {
         resolutionStrategy {
             // Inherited version from Spring Boot can't be used because of regressions:
@@ -276,7 +276,13 @@ dependencies {
     testImplementation "org.testng:testng"
     liquibaseRuntime sourceSets.main.compileClasspath
     liquibaseRuntime "org.liquibase.ext:liquibase-hibernate5:${liquibaseHibernate5Version}"
-    //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
+    implementation group: 'io.swagger', name: 'swagger-annotations', version: '1.6.10'
+    // https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.71'
+
+
+
+
 }
 
 if (project.hasProperty("gae")) {

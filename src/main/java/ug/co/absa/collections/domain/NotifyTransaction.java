@@ -24,16 +24,18 @@ public class NotifyTransaction implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
+
     private Long id;
 
     @NotNull
     @Type(type = "uuid-char")
     @Column(name = "record_unique_identifier", length = 36, nullable = false, unique = true)
+ // jhipster-needle-entity-add-field - JHipster will add fields here
     private UUID recordUniqueIdentifier;
 
     @NotNull
-    @Column(name = "payment_id", nullable = false)
+    @Column(name = "payment_id", nullable = false, unique = true)
     private Integer paymentId;
 
     @NotNull
@@ -68,31 +70,31 @@ public class NotifyTransaction implements Serializable {
     private Integer currency;
 
     @NotNull
-    @Column(name = "debit_account", nullable = false)
+    @Column(name = "debit_account", nullable = true)
     private Integer debitAccount;
 
     @NotNull
-    @Column(name = "credit_account", nullable = false)
+    @Column(name = "credit_account", nullable = true)
     private Integer creditAccount;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "proccessing_status")
+    @Column(name = "proccessing_status", nullable=true)
     private ProccesingStatus proccessingStatus;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "fcr_transaction_status")
+    @Column(name = "fcr_transaction_status", nullable=true)
     private TransactionStatus fcrTransactionStatus;
 
-    @Column(name = "fcr_transaction_id")
+    @Column(name = "fcr_transaction_id", nullable=true)
     private String fcrTransactionId;
 
-    @Column(name = "fcr_transaction_reference")
+    @Column(name = "fcr_transaction_reference",nullable=true)
     private String fcrTransactionReference;
 
-    @Column(name = "free_field_1")
+    @Column(name = "free_field_1",nullable=true)
     private String freeField1;
 
-    @Column(name = "free_field_2")
+    @Column(name = "free_field_2",nullable=true)
     private String freeField2;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
