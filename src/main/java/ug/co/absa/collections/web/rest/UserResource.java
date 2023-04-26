@@ -28,6 +28,7 @@ import ug.co.absa.collections.security.AuthoritiesConstants;
 import ug.co.absa.collections.service.MailService;
 import ug.co.absa.collections.service.UserService;
 import ug.co.absa.collections.service.dto.AdminUserDTO;
+import io.swagger.v3.oas.annotations.Hidden;
 import ug.co.absa.collections.web.rest.errors.BadRequestAlertException;
 import ug.co.absa.collections.web.rest.errors.EmailAlreadyUsedException;
 import ug.co.absa.collections.web.rest.errors.LoginAlreadyUsedException;
@@ -58,6 +59,7 @@ import ug.co.absa.collections.web.rest.errors.LoginAlreadyUsedException;
  */
 @RestController
 @RequestMapping("/api/admin")
+@Hidden
 public class UserResource {
 
     private static final List<String> ALLOWED_ORDERED_PROPERTIES = Collections.unmodifiableList(
